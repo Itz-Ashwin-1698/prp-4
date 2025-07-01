@@ -849,11 +849,7 @@ function App() {
               <div className="special-photo-balloon balloon-1 fast-balloons">
                 <div className="photo-balloon-container">
                   <div className="photo-circle">
-                    <img 
-                      src="/1.jpg" 
-                      alt="Chuiya photo 1" 
-                      className="photo-image"
-                    />
+                    <div className="placeholder-photo">📸</div>
                     <div className="photo-glow"></div>
                   </div>
                   <div className="photo-caption">Chotti Bacchi ho kya ....</div>
@@ -870,11 +866,7 @@ function App() {
               <div className="special-photo-balloon balloon-2 fast-balloons">
                 <div className="photo-balloon-container">
                   <div className="photo-circle">
-                    <img 
-                      src="/2.jpg" 
-                      alt="Chuiya photo 2" 
-                      className="photo-image"
-                    />
+                    <div className="placeholder-photo">📸</div>
                     <div className="photo-glow"></div>
                   </div>
                   <div className="photo-caption">Beauty in wisdom</div>
@@ -891,11 +883,7 @@ function App() {
               <div className="special-photo-balloon balloon-3 fast-balloons">
                 <div className="photo-balloon-container">
                   <div className="photo-circle">
-                    <img 
-                      src="/3.jpg" 
-                      alt="Chuiya photo 3" 
-                      className="photo-image"
-                    />
+                    <div className="placeholder-photo">📸</div>
                     <div className="photo-glow"></div>
                   </div>
                   <div className="photo-caption">Baar Baar hmm bolne wali</div>
