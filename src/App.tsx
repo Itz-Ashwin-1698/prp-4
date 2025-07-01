@@ -25,6 +25,7 @@ function App() {
   const [showTVGlitch, setShowTVGlitch] = useState(false);
   const [showSurpriseSpotlight, setShowSurpriseSpotlight] = useState(false);
   const [showCardButton, setShowCardButton] = useState(false);
+  const [cardFlipped, setCardFlipped] = useState(false);
 
   // Canvas refs for effects
   const confettiCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -579,6 +580,10 @@ function App() {
     }
   };
 
+  const handleCardFlip = () => {
+    setCardFlipped(!cardFlipped);
+  };
+
   // Enable audio on first user interaction
   const enableAudio = () => {
     [countdownAudioRef, ratEntranceAudioRef, curtainOpenAudioRef, birthdayMusicRef, blowCandlesAudioRef, glitchAudioRef].forEach(ref => {
@@ -627,9 +632,52 @@ function App() {
             className="fixed top-0 left-0 w-full h-full pointer-events-none z-10"
           />
 
-          {/* Birthday Card */}
-          <div className="birthday-card">
-            <div className="card-front">
+          {/* Birthday Card with Flip Effect */}
+          <div 
+            className="birthday-card"
+            style={{
+              transformStyle: 'preserve-3d',
+              transform: cardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              transition: 'transform 0.8s ease-in-out'
+            }}
+          >
+            {/* Picture Side */}
+            <div 
+              className="card-front"
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                backfaceVisibility: 'hidden',
+                padding: '0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <img 
+                src="/24889b63-2a23-4c1d-bdeb-c6bc764031e5.png" 
+                alt="Birthday Picture" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '20px'
+                }}
+              />
+            </div>
+
+            {/* Message Side */}
+            <div 
+              className="card-front"
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                backfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)'
+              }}
+            >
               <div className="card-header">
                 <h1 className="card-title">Happy Birthday!</h1>
                 <div className="card-subtitle">Chuiyaa</div>
@@ -669,6 +717,41 @@ function App() {
               ))}
             </div>
           </div>
+
+          {/* Flip Button */}
+          <button 
+            onClick={handleCardFlip}
+            style={{
+              position: 'absolute',
+              bottom: '50px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 101,
+              background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4)',
+              backgroundSize: '300% 300%',
+              animation: 'gradientShift 3s ease infinite',
+              border: 'none',
+              padding: '15px 30px',
+              borderRadius: '50px',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              cursor: 'pointer',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+              transition: 'all 0.3s ease',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateX(-50%) translateY(-3px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+            }}
+          >
+            {cardFlipped ? '🖼️ View Picture' : '💌 Read Message'}
+          </button>
         </div>
       )}
 
